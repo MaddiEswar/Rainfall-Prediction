@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href={{url_for('static',filename='predictor.css')}}>
+    <title>Rain Prediction</title>
+</head>
+<body>
+    <section id="prediction-form">
+        <form class="form" action="/predict", method="POST" id="myForm">
+            <h1 class="my-3 text-center">Rain Prediction</h1>
+            <div class="row">
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="year" class="year">Year</label>
+                        <input type="text" class="form-control" id="year" name="year" value="1982">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="doy" class="doy">Day</label>
+                        <input type="text" class="form-control" id="doy" name="doy" value="1">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="mintemp" class="mintemp"> Minimum temprature(20 - 30 Celsius)</label>
+                        <input type="text" class="form-control" id="mintemp" name="mintemp" value="25.83">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="maxtemp" class="maxtemp">Maximum Temperature(20 - 35 Celsius)</label>
+                        <input type="text" class="form-control" id="maxtemp" name="maxtemp" value="31.27">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="temp" class="temp">Temperature(20 - 35 Celsius)</label>
+                        <input type="text" class="form-control" id="temp" name="temp" value="28.15">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="temprange" class="temprange">Temperature Range(0 - 10 Celsius)</label>
+                        <input type="text" class="form-control" id="temprange" name="temprange" value="5.44">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="dew" class="dew">Dew Forest Point(13 - 27 Celsius)</label>
+                        <input type="text" class="form-control" id="dew" name="dew" value="23.42">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="windpeed2m" class="windspeed2m">Wind Speed at 2meters(0 - 5 m/s)</label>
+                        <input type="text" class="form-control" id="windspeed2m" name="windspeed2m" value="2.25">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="windspeed10m" class="windspeed10m">Wind Speed at 10meters(0 - 7 m/s)</label>
+                        <input type="text" class="form-control" id="windspeed10m" name="windspeed10m" value="2.85">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="winddir2m" class="winddir2m">Wind Direction at 2meters(10 - 360 degrees)</label>
+                        <input type="text" class="form-control" id="winddir2m" name="winddir2m" value="187.62">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="winddir10m" class="winddir10m">Wind Direction at 10meters(10 - 360 degrees)</label>
+                        <input type="text" class="form-control" id="winddir10m" name="winddir10m" value="187.06">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="specifichumidity" class="specifichumidity">Specific Humidity(10 - 22 g/kg)</label>
+                        <input type="text" class="form-control" id="specifichumidity" name="specifichumidity" value="18.07">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="relativehumidity" class="relativehumidity">Relative Humidity(45 - 100 %)</label>
+                        <input type="text" class="form-control" id="relativehumidity" name="relativehumidity" value="76.56">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="pressure" class="pressure">Surface Pressure(100 - 102 kPa)</label>
+                        <input type="text" class="form-control" id="pressure" name="pressure" value="100.59">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="earthskintemp" class="earthskintemp">Earth Skin Temperature(20 - 31 Celsius)</label>
+                        <input type="text" class="form-control" id="earthskintemp" name="earthskintemp" value="28.76">
+                    </div>
+                </div>
+            
+                <div class="col-md-6 my-2 d-flex align-items-end justify-content-around">
+                    <button type="submit" class="btn btn-info button" >Predict</button>
+                </div>
+            </div>
+        </form>
+    </section>
+    <div>
+         <h1><center> {{ prediction_text }} </center></h1>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
+        
+ 
+    </script>
+    
+</body>
+</html>
+
+
+
+
+
+
+
