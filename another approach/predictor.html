@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href={{url_for('static',filename='predictor.css')}}>
+    <title>Rain Prediction</title>
+</head>
+<body>
+    <section id="prediction-form">
+        <form class="form"  id="myForm">
+            <h1 class="my-3 text-center">Rain Prediction</h1>
+            <div class="row">
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="year" class="year">Year</label>
+                        <input type="text" class="form-control" id="year" name="year" >
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="doy" class="doy">Day</label>
+                        <input type="text" class="form-control" id="doy" name="doy" >
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="mintemp" class="mintemp"> Minimum temprature(20 - 30 Celsius)</label>
+                        <input type="text" class="form-control" id="mintemp" name="mintemp" >
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="maxtemp" class="maxtemp">Maximum Temperature(20 - 35 Celsius)</label>
+                        <input type="text" class="form-control" id="maxtemp" name="maxtemp" >
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="temp" class="temp">Temperature(20 - 35 Celsius)</label>
+                        <input type="text" class="form-control" id="temp" name="temp" >
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="temprange" class="temprange">Temperature Range(0 - 10 Celsius)</label>
+                        <input type="text" class="form-control" id="temprange" name="temprange" >
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="dew" class="dew">Dew Forest Point(13 - 27 Celsius)</label>
+                        <input type="text" class="form-control" id="dew" name="dew" >
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="windspeed2m" class="windspeed2m">Wind Speed at 2meters(0 - 5 m/s)</label>
+                        <input type="text" class="form-control" id="windspeed2m" name="windspeed2m" >
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="windspeed10m" class="windspeed10m">Wind Speed at 10meters(0 - 7 m/s)</label>
+                        <input type="text" class="form-control" id="windspeed10m" name="windspeed10m" >
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="winddir2m" class="winddir2m">Wind Direction at 2meters(10 - 360 degrees)</label>
+                        <input type="text" class="form-control" id="winddir2m" name="winddir2m" >
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="winddir10m" class="winddir10m">Wind Direction at 10meters(10 - 360 degrees)</label>
+                        <input type="text" class="form-control" id="winddir10m" name="winddir10m" >
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="specifichumidity" class="specifichumidity">Specific Humidity(10 - 22 g/kg)</label>
+                        <input type="text" class="form-control" id="specifichumidity" name="specifichumidity" >
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="relativehumidity" class="relativehumidity">Relative Humidity(45 - 100 %)</label>
+                        <input type="text" class="form-control" id="relativehumidity" name="relativehumidity" >
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="pressure" class="pressure">Surface Pressure(100 - 102 kPa)</label>
+                        <input type="text" class="form-control" id="pressure" name="pressure" >
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="earthskintemp" class="earthskintemp">Earth Skin Temperature(20 - 31 Celsius)</label>
+                        <input type="text" class="form-control" id="earthskintemp" name="earthskintemp" >
+                    </div>
+                </div>
+            
+                <div class="col-md-6 my-2 d-flex align-items-end justify-content-around">
+                    <button type="submit" class="btn btn-info button" >Predict</button>
+                </div>
+            </div>
+        </form>
+    </section>
+    <div>
+         <h1><center><p id="predictionText"> </p></center></h1>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
+        
+ 
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    // Listen for form submission
+    document.getElementById('myForm').addEventListener('submit', function(event) {
+        // Prevent the default form submission
+        event.preventDefault();
+        
+        // Check each input field value by ID and set default value if empty
+        const yearInput = document.getElementById('year');
+        if (yearInput.value === '') {
+            yearInput.value = '1982';
+        }
+        
+        const doyInput = document.getElementById('doy');
+        if (doyInput.value === '') {
+            doyInput.value = '1';
+        }
+        
+        const mintempInput = document.getElementById('mintemp');
+        if (mintempInput.value === '') {
+            mintempInput.value = '25.83';
+        }
+        
+        const maxtempInput = document.getElementById('maxtemp');
+        if (maxtempInput.value === '') {
+            maxtempInput.value = '31.27';
+        }
+        
+        const tempInput = document.getElementById('temp');
+        if (tempInput.value === '') {
+            tempInput.value = '28.15';
+        }
+        
+        const temprangeInput = document.getElementById('temprange');
+        if (temprangeInput.value === '') {
+            temprangeInput.value = '5.44';
+        }
+        
+        const dewInput = document.getElementById('dew');
+        if (dewInput.value === '') {
+            dewInput.value = '23.42';
+        }
+        
+        const windspeed2mInput = document.getElementById('windspeed2m');
+        if (windspeed2mInput.value === '') {
+            windspeed2mInput.value = '2.25';
+        }
+        
+        const windspeed10mInput = document.getElementById('windspeed10m');
+        if (windspeed10mInput.value === '') {
+            windspeed10mInput.value = '2.85';
+        }
+        
+        const winddir2mInput = document.getElementById('winddir2m');
+        if (winddir2mInput.value === '') {
+            winddir2mInput.value = '187.62';
+        }
+        
+        const winddir10mInput = document.getElementById('winddir10m');
+        if (winddir10mInput.value === '') {
+            winddir10mInput.value = '187.06';
+        }
+        
+        const specifichumidityInput = document.getElementById('specifichumidity');
+        if (specifichumidityInput.value === '') {
+            specifichumidityInput.value = '18.07';
+        }
+        
+        const relativehumidityInput = document.getElementById('relativehumidity');
+        if (relativehumidityInput.value === '') {
+            relativehumidityInput.value = '76.56';
+        }
+        
+        const pressureInput = document.getElementById('pressure');
+        if (pressureInput.value === '') {
+            pressureInput.value = '100.59';
+        }
+        
+        const earthskintempInput = document.getElementById('earthskintemp');
+        if (earthskintempInput.value === '') {
+            earthskintempInput.value = '28.76';
+        }
+        
+        // Send an AJAX request to Flask
+        fetch('/res', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                year: yearInput.value,
+                doy: doyInput.value,
+                mintemp: mintempInput.value,
+                maxtemp: maxtempInput.value,
+                temp: tempInput.value,
+                temprange: temprangeInput.value,
+                dew: dewInput.value,
+                windspeed2m: windspeed2mInput.value,
+                windspeed10m: windspeed10mInput.value,
+                winddir2m: winddir2mInput.value,
+                winddir10m: winddir10mInput.value,
+                specifichumidity: specifichumidityInput.value,
+                relativehumidity: relativehumidityInput.value,
+                pressure: pressureInput.value,
+                earthskintemp: earthskintempInput.value
+            })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Handle the response from Flask
+            const predictionText = document.getElementById('predictionText');
+            predictionText.textContent = 'Rainfall Occurrence: ' + data.prediction_text + ' mm/day';
+        })
+        .catch(error => {
+            // Handle errors
+            console.error('There was a problem with the fetch operation:', error);
+        });
+    });
+});
+
+    </script>
+    
+</body>
+</html>
+
+
+
+
+
+
+
